@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+
+        button {
+            cursor: pointer;
+            --glow-color: rgb(217, 176, 255);
+            --glow-spread-color: rgba(191, 123, 255, 0.781);
+            --enhanced-glow-color: rgb(231, 206, 255);
+            --btn-color: rgb(100, 61, 136);
+            border: .25em solid var(--glow-color);
+            padding: 1em 3em;
+            color: var(--glow-color);
+            font-size: 15px;
+            font-weight: bold;
+            background-color: var(--btn-color);
+            border-radius: 1em;
+            outline: none;
+            box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 1em var(--glow-spread-color),
+                inset 0 0 .75em .25em var(--glow-color);
+            text-shadow: 0 0 .5em var(--glow-color);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        button::after {
+            pointer-events: none;
+            content: "";
+            position: absolute;
+            top: 120%;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: var(--glow-spread-color);
+            filter: blur(2em);
+            opacity: .7;
+            transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+        }
+
+        button:hover {
+            color: var(--btn-color);
+            background-color: var(--glow-color);
+            box-shadow: 0 0 1em .25em var(--glow-color),
+                0 0 4em 2em var(--glow-spread-color),
+                inset 0 0 .75em .25em var(--glow-color);
+        }
+
+        button:active {
+            box-shadow: 0 0 0.6em .25em var(--glow-color),
+                0 0 2.5em 2em var(--glow-spread-color),
+                inset 0 0 .5em .25em var(--glow-color);
+        }
+
+        #element {
+            color: red;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="typed-strings">
+        <span id="element"></span>
+    </div>
+    <div class="">
+        <button onclick="start()">Click me</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+    function start() {
+        var typed = new Typed('#element', {
+            strings: ['<i>Happy Holi Topa haru</i> ', 'Mugi', 'Chutiya haru.......'],
+            typeSpeed: 50,
+            loop: true
+        });
+        var triangle = confetti.shapeFromPath({ path: 'M0 10 L5 0 L10 5z' });
+
+
+        confetti({
+            shapes: [triangle]
+        });
+    }
+</script>
+
+</html>
